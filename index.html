@@ -28,12 +28,13 @@
 
     <script>
         function updateCountdown() {
-            const targetDate = new Date("2025-7-14T23:59:59").getTime();
+            const targetDate = new Date("2025-12-31T23:59:59").getTime();
             const now = new Date().getTime();
             const timeLeft = targetDate - now;
 
-            if (timeLeft < 0) {
+            if (timeLeft <= 0) {
                 document.getElementById("countdown").innerHTML = "Time's up!";
+                clearInterval(countdownInterval);
                 return;
             }
 
@@ -45,8 +46,9 @@
             document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
 
-        setInterval(updateCountdown, 1000);
+        const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
 </body>
 </html>
+
